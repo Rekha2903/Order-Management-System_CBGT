@@ -23,11 +23,10 @@ INSTALLATION
 
 This project is available in GitHub in the link below:
 
-
-1. 
-2. 
-3. 
-4.
+1. https://github.com/Rekha2903/Order-Management-System_CBGT
+2. Download the project -Application Gateway
+3. Download the project -OrderItemMicroservice
+4. Download the project -OrderMicroservice
 
 STARTING THE GATEWAY APLLICATION 
 --------------------------------
@@ -115,9 +114,9 @@ DESIGN DECISIONS
 
 In this application, Order Microservice is the consumer of the order items from Order Item Microservice application.
 So, Order Microservice application is made a FeignClient for their communication
-To develop these applications, in memory H2 data base is used. 
+To develop these applications, in memory H2 database is used. 
 Global exception handlers are available to handle exception scenarios.
 Inputs are validated before processing the request.
-As soon as we hit http://localhost:8080/, a micro service call is made to get orderItems which in the future when front end is developed,
-can be sent to the front end and allow user to choose from available items and selected items can be set to orderItems field in Order object and along with other input fields a call can be made to addOrder API passing Order object. For now, as soon as we hit this application with mapping -"/"
-we get list of orderItems available from orderItem micro service and from among them, we can choose two items and manually pass in orderItems[] while placing an order along with other details.
+As soon as we hit http://localhost:8080/, a microservice call is made to get orderItems, which in the future, when front end is developed,
+can be sent to the front end and allow user to choose from available items and selected items can be set to orderItems field in Order object and along with other input fields a call can be made to addOrder API passing Order object. For now, as soon as we hit this application[http://localhost:8080] with mapping -"/"
+we get list of orderItems available from orderItem microservice and from among them, we can choose two items and manually pass in orderItems[] while placing an order along with other details to to addOrder API of OrderMicroservice.
