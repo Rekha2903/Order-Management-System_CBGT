@@ -1,0 +1,5 @@
+package com.project.ordermanagement.exception;
+
+public class OrderItemNotFound {
+
+}

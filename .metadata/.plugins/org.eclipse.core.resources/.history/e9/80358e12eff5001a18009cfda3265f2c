@@ -1,0 +1,20 @@
+package com.project.ordermanagement.exception;
+
+public class OrderItemNotCreatedException extends RuntimeException{
+	
+	private static final long serialVersionUID = 1L;
+
+
+	public OrderItemNotCreatedException() {
+		super();
+	}
+
+	public OrderItemNotCreatedException(String message, Throwable throwable) {
+		super(message, throwable);
+	}
+
+	public OrderItemNotCreatedException(String message) {
+		super(message);
+	}
+	
+}

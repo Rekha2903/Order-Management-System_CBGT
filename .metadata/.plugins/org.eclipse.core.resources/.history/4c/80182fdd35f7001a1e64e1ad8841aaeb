@@ -1,0 +1,65 @@
+package com.project.ordermanagement.service;
+
+import java.time.LocalDate;
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.project.ordermanagement.model.Order;
+import com.project.ordermanagement.model.OrderItemResponse;
+import com.project.ordermanagement.repository.OrderRepository;
+
+@Service
+@Transactional(readOnly=true)
+public class OrderServiceImpl implements OrderService{
+	
+	@Autowired 
+	OrderRepository orderRepo;
+
+	@Override
+	@Transactional(readOnly = false,propagation = Propagation.REQUIRED,isolation = Isolation.DEFAULT,rollbackFor = Exception.class)
+	public Order createOrder(Order order) {
+		double total = 0;
+		for(OrderItemResponse oi : order.getOrderItems()) {
+			total = total + (oi.getPrice());
+		}
+		order.setTotal(total);
+		return orderRepo.save(order);
+	}
+
+	@Override
+	public List<Order> retrieveOrders() {
+		return (List<Order>) orderRepo.findAll();
+	}
+
+	@Override
+	public Order retrieveOrderByOrderId(int orderId) {
+		Optional<Order> optional = orderRepo.findById(orderId);
+		if(optional.isPresent())
+			return optional.get();
+		else
+			return null;
+	}
+
+	@Override
+	public List<Order> retrieveOrderItemByCustomerName(String customerName) {
+		return Optional.ofNullable(orderRepo.findByCustomerName(customerName)).orElse(null);
+	}
+
+	@Override
+	public List<Order> retrieveOrderByDate(LocalDate orderDate) {
+		return Optional.ofNullable(orderRepo.findByOrderDate(orderDate)).orElse(null);
+	}
+
+	@Override
+	public long orderCount() {
+		return orderRepo.count();
+	}
+	
+}

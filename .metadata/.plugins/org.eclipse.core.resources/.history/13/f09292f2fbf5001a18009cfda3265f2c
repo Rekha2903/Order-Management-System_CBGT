@@ -1,0 +1,8 @@
+package com.project.ordermanagement.service;
+
+import org.springframework.cloud.openfeign.FeignClient;
+
+@FeignClient(url="http://a4lnkml29437.mindtree.com:8081/")
+public interface OrderItemClient {
+
+}

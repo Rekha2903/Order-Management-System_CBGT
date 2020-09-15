@@ -1,0 +1,5 @@
+package com.project.ordermanagement.model;
+
+public class OrderItem {
+
+}

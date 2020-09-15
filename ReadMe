@@ -1,0 +1,123 @@
+
+CONTENTS OF THIS FILE
+---------------------
+
+ * Introduction
+ * Set Up
+ * Starting the Gateway Application
+ * Starting the Order Item Microservice Application
+ * Starting the Order Microservice Application
+ * Available REST API End Points in the application
+ * Using the application
+ * Design Decisions
+
+INTRODUCTION
+------------
+
+Order Management System is an application which help users to place orders from available
+order items. This application is developed using microservice architecture where in Order 
+Microservice is a consumer of the service(s) offered by Order Item Microservice  
+
+INSTALLATION
+------------
+
+This project is available in GitHub in the link below:
+
+
+1. 
+2. 
+3. 
+4.
+
+STARTING THE GATEWAY APLLICATION 
+--------------------------------
+
+Gateway application is the main application which is the Eureka Server and 
+this application has to be launched FIRST as a Spring Boot application on the
+localhost(Embedded Tomcat Server)
+
+
+STARTING THE ORDER ITEM MICROSERVICE APPLICATION
+------------------------------------------------
+
+Order Item Microservice application is registered as a Eureka Client with Eureka Server -
+Gateway Application and this application has to be launched SECOND as a Spring Boot 
+application on the localhost(Embedded Tomcat Server)
+
+STARTING THE ORDER MICROSERVICE APPLICATION
+------------------------------------------------
+
+Order Microservice application is registered as a Eureka Client with Eureka Server -
+Gateway Application and this application has to be launched THIRD as a Spring Boot 
+application on the localhost(Embedded Tomcat Server)
+
+AVAILABLE REST API END POINTS IN THE APPLICATION
+------------------------------------------------
+
+Available Endpoints of Order Item Microservice are:
+---------------------------------------------------
+
+1. /items - getOrderItems - This endpoint does not take any parameter and is called to view 
+							all order items available
+							
+2. /item  - addOrderItem -  This takes OrderItem object in Request Body and is called to 
+							add an orderItem to the database. If in case order item was not created for some reason, then it returns
+							"Order Item was not created!!" message as response
+							
+3. /itemByCode/{itemCode} - This endpoint takes itemCode as path variable/parameter and returns
+							specific item from the database if available, else returns 
+							"Order Item not found!!" message
+
+4. /itemByName/{itemName} - This endpoint takes itemName as path variable/parameter and returns
+							specific item from the database if available, else returns 
+							"Order Item not found!!" message
+							
+5. /totalItemsAvailable -   This endpoint does not take any parameter and returns the number of 
+							items available for ordering 							
+							
+Available Endpoints of Order Microservice are:
+----------------------------------------------
+
+1. /orders - getOrders -    This endpoint does not take any parameter and is called to view 
+							all orders
+							
+2. /order  - placeOrder -   This takes order object in Request Body and is called to 
+						    place an order. If in case order was not created for some reason, then it returns
+							"Order was not placed!!" message as response
+							
+3. /orders/{orderId} -      This endpoint takes orderId as path variable/parameter and returns
+							specific order from the database if available, else returns 
+							"Order not found!!" message
+
+4. /orders/orderByName/     This endpoint takes customerName as path variable/parameter and returns
+{customerName} - 			the order(s) placed by the customer from the database if available, else returns 
+							[]
+
+5. /orders/orderByDate/     This endpoint takes orderDate[in ISO Date Format e.g. "2000-10-31".] as path variable/parameter and returns
+{orderDate} -               the order(s) placed on the input date from the database if available, else returns [] 
+					
+							
+6. /orders/orderCount -     This endpoint does not take any parameter and returns the number of orders placed 
+
+
+USING THE APPLICATION
+---------------------
+
+As this is a backend application, we can use tools like Insomnia or Postman or any Browser[for only get requests] to test this application.
+Gateway Application runs on port number :8761 - http://localhost:8761/
+Order Item Microservice Application runs on port number : 8081 - http://localhost:8081/
+Order Microservice Application runs on port number : 8080 - http://localhost:8080/
+
+These microservices can be accessed from gate way application or as individual applications by hitting respective URLs.
+
+DESIGN DECISIONS
+----------------
+
+In this application, Order Microservice is the consumer of the order items from Order Item Microservice application.
+So, Order Microservice application is made a FeignClient for their communication
+To develop these applications, in memory H2 data base is used. 
+Global exception handlers are available to handle exception scenarios.
+Inputs are validated before processing the request.
+As soon as we hit http://localhost:8080/, a micro service call is made to get orderItems which in the future when front end is developed,
+can be sent to the front end and allow user to choose from available items and selected items can be set to orderItems field in Order object and along with other input fields a call can be made to addOrder API passing Order object. For now, as soon as we hit this application with mapping -"/"
+we get list of orderItems available from orderItem micro service and from among them, we can choose two items and manually pass in orderItems[] while placing an order along with other details.

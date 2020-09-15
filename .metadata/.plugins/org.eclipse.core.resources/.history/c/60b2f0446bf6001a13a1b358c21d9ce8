@@ -1,0 +1,32 @@
+package com.project.ordermanagement.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.project.ordermanagement.model.Order;
+import com.project.ordermanagement.repository.OrderRepository;
+
+@Service
+@Transactional(readOnly=true)
+public class OrderServiceImpl implements OrderService{
+	
+	@Autowired 
+	OrderRepository orderRepo;
+
+	@Override
+	@Transactional(readOnly = false,propagation = Propagation.REQUIRED,isolation = Isolation.DEFAULT,rollbackFor = Exception.class)
+	public Order createOrder(Order order) {
+		return orderRepo.save(order);
+	}
+
+	@Override
+	public List<Order> retrieveOrders() {
+		return (List<Order>) orderRepo.findAll();
+	}
+	
+}

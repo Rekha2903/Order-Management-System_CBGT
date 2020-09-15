@@ -1,0 +1,19 @@
+package com.project.ordermanagement.exception;
+
+public class OrderItemNotFound extends RuntimeException{
+	
+	private static final long serialVersionUID = 1L;
+
+	public OrderItemNotFound() {
+		super();
+	}
+
+	public OrderItemNotFound(String message) {
+		super(message);
+	}
+	
+	public OrderItemNotFound(String message, Throwable throwableInstance) {
+		super(message, throwableInstance);
+	}
+
+}

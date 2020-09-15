@@ -1,0 +1,32 @@
+spring:
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:~/orderdb
+    username: admin 
+    password: password
+    tomcat:
+      max-wait: 20000
+      max-active: 50
+      max-idle: 20
+      min-idle: 15
+  profiles:
+    active: spring.profiles.active
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        show-sql: true
+  application:
+    name: Order-Service
+  messages:
+    basename: messages
+    encoding: UTF-8
+    use-code-as-default-message: true
+server:
+  port: 8080
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+    com.project.ordermanagement: DEBUG

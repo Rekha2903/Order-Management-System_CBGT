@@ -1,0 +1,29 @@
+package com.project.ordermanagement.model;
+
+import java.sql.Date;
+import java.util.ArrayList;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Entity
+@Data
+@NoArgsConstructor
+@Table(name="Order")
+public class Order {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int orderId;
+	private String customerName;
+	private Date orderDate;
+	private String shippingAddress;
+	private ArrayList<OrderItem> orderItems;
+	private double total;
+}

@@ -1,0 +1,24 @@
+package com.project.ordermanagement.model;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Entity
+@Data
+@NoArgsConstructor
+@Table(name="OrderItem")
+public class OrderItem {
+    @Id
+    @GeneratedValue(strategy= GenerationType.SEQUENCE)
+	private int productCode;
+    @NotEmpty private String productName;
+    @NotEmpty private int quantity;
+    @NotEmpty private double price;
+}

@@ -1,0 +1,19 @@
+package com.project.ordermanagement.service;
+
+import java.util.List;
+
+import com.project.ordermanagement.model.OrderItem;
+
+public interface OrderItemService {
+	
+	OrderItem createOrderItem(OrderItem orderItem);
+	
+	List<OrderItem> retrieveOrderItems();
+	
+	OrderItem retrieveOrderItemByProductCode(int productCode);
+	
+	OrderItem retrieveOrderItemByProductName(int productName);
+	
+	long itemsCount();
+
+}

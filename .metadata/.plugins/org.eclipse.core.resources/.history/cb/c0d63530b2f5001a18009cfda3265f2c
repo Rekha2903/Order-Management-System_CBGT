@@ -1,0 +1,5 @@
+package com.project.ordermanagement;
+
+public class ErrorCodes {
+
+}

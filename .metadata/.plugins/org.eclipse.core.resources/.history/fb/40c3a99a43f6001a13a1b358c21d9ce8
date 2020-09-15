@@ -1,0 +1,13 @@
+package com.project.ordermanagement.model;
+
+
+import lombok.Data;
+
+@Data
+public class OrderItemResponse {
+	
+	private int productCode;
+	private String productName;
+	private int quantity;
+	private int price;
+}

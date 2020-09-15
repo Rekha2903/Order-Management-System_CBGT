@@ -1,0 +1,29 @@
+package com.project.ordermanagement.model;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import com.project.ordermanagement.ErrorCodes;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Entity
+@Data
+@NoArgsConstructor
+@Table(name="OrderItem")
+public class OrderItem {
+    @Id
+    @GeneratedValue(strategy= GenerationType.SEQUENCE)
+	private int productCode;
+    @NotNull(message = "Product Name is not provided. Please provide Product Name")
+    private String productName;
+    @NotNull(message = "Quantity is not provided. Please provide Quantity") 
+    private int quantity;
+    @NotNull (message = "Price is not provided. Please provide Price") 
+    private double price;
+}

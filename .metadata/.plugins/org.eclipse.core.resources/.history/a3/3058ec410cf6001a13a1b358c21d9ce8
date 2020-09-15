@@ -1,0 +1,14 @@
+package com.project.ordermanagement.model;
+
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import lombok.Data;
+
+@Data
+@JsonSerialize
+public class OrderItemResponse {
+	private int productCode;
+	private String productName;
+	private int quantity;
+	private int price;
+}

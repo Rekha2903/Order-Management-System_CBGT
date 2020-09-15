@@ -1,0 +1,9 @@
+package com.project.ordermanagement;
+
+public interface ErrorCodes {
+
+	static final String ORDERITEMNOTFOUND = "ORDERITEMNOTFOUND";
+	static final String ORDERITEMNOTSAVED = "ORDERITEMNOTSAVED";
+	static final String PRODUCTNAMEMUSTNOTBEEMPTY = "PRODUCTNAMEMUSTNOTBEEMPTY";
+
+}

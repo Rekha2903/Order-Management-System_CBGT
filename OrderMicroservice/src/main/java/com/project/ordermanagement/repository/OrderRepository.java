@@ -1,0 +1,16 @@
+package com.project.ordermanagement.repository;
+
+import java.time.LocalDate;
+import java.util.List;
+
+import org.springframework.data.repository.CrudRepository;
+
+import com.project.ordermanagement.model.Order;
+
+public interface OrderRepository extends CrudRepository<Order, Integer>{
+
+	List<Order> findByCustomerName(String customerName);
+
+	List<Order> findByOrderDate(LocalDate orderDate);
+
+}

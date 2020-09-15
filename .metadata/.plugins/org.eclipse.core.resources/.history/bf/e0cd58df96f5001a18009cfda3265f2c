@@ -1,0 +1,5 @@
+package com.project.ordermanagement.repository;
+
+public class OrderItemRepository {
+
+}

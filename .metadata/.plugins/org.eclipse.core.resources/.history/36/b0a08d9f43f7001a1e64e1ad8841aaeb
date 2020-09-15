@@ -1,0 +1,49 @@
+spring:
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:orderitemdb
+    username: sa 
+    password: 
+    tomcat:
+      max-wait: 20000
+      max-active: 50
+      max-idle: 20
+      min-idle: 15
+  h2:
+    console:
+      enabled: true 
+  profiles:
+    active: spring.profiles.active
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        show-sql: true
+        format-sql: true
+        ddl-auto : none
+  application:
+    name: Order-Item-Service
+  messages:
+    basename: messages
+    encoding: UTF-8
+    use-code-as-default-message: true
+server:
+  port: 8081
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+    com.project.ordermanagement: DEBUG
+eureka:         
+  instance:
+    leaseRenewalIntervalInSeconds: 5
+    leaseExpirationDurationInSeconds: 2
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    healthcheck:
+      enabled: true
+

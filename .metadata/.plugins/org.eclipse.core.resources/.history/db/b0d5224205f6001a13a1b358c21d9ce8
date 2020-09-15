@@ -1,0 +1,33 @@
+package com.project.ordermanagement.model;
+
+import java.sql.Date;
+import java.util.ArrayList;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@SuppressWarnings("unused")
+@Entity
+@Data
+@NoArgsConstructor
+@Table(name="Order")
+public class Order {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int orderId;
+	@NotNull private String customerName;
+	@NotNull @DateTimeFormat private Date orderDate;
+	@NotNull private String shippingAddress;
+	private ArrayList<OrderItemResponse> orderItems;
+	private double total;
+}

@@ -1,0 +1,5 @@
+package com.project.ordermanagement.config;
+
+public class OrderItemConfig {
+
+}
