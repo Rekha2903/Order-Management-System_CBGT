@@ -27,6 +27,7 @@ This project is available in GitHub in the link below:
 2. Download the project -Application Gateway
 3. Download the project -OrderItemMicroservice
 4. Download the project -OrderMicroservice
+5. Import the projects in eclipse and build all the projects and they are ready to be launched.
 
 STARTING THE GATEWAY APLLICATION 
 --------------------------------
